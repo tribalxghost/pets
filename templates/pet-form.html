@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="row justify-content-center">
+<form class="col-lg-6 offset-lg-3 " action="/add" method="post">
+    {{ form.hidden_tag() }}
+    {% for field in form 
+        if field.widget.input_type != 'hidden' %}
+    {% if field.type == "BooleanField" %}
+        {{ field }} {{ field.label }}
+    {% else %}
+    {{ field.label(class_="col-sm-2 col-form-label") }}
+    {{ field(class_= "form-control")}}
+    {% endif %}
+    {% endfor %}
+    <div>
+    <button class="btn btn-primary">Add</button>
+</div>
+</form>
+</div>
+{% endblock %}

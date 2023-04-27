@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ pet.name }}</h1>
+<div>
+    <ul>
+        <li>Species: {{pet.species}}</li>
+        <li><img src="{{pet.photo_url}}" alt=""></li>
+        <li>Age: {{ pet.age }}<li>
+    </ul>
+</div>
+<form action="/pet/{{pet.id}}" method="post">
+    {{ update.hidden_tag() }}
+    {% for field in update if field.widget.input_type != 'hidden' %}
+    {{ field.label }}
+    {{ field }}
+    
+    {% endfor %}
+    <button class="btn">Submit</button>
+</form>
+{% endblock %}
